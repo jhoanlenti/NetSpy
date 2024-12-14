@@ -1,4 +1,4 @@
-# Scan-IP
+# NetSpy
 Projecto de programacion
 
 1. Coordinador del Proyecto y Módulo Principal
