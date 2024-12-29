@@ -1,18 +1,28 @@
+import os
 from PIL import Image
+from pathlib import Path
+
+def construir_ruta(archivo):
+    directorio_archivo = Path(__file__).parent
+
+    ruta_archivo = directorio_archivo / archivo
+    
+    return ruta_archivo
+
 def textobievenida():
-    welcbien = open("bienvenido.txt","r")
+    ruta = construir_ruta("bienvenido.txt")
+
+    welcbien = open(ruta,"r")
     
     print(welcbien.read())
 
 def banner():
-    img_path = 'c:\\Users\\06rem\\Downloads\\NetSpy Code\\NetSpy.jpg'
+    ruta = construir_ruta("NetSpy.jpg")
+    img_path = ruta
 
-   
     img = Image.open(img_path)
 
-   
     img = img.resize((100, 50))  #ajustar la calidad
-
 
     img = img.convert('L')
 
@@ -31,5 +41,3 @@ def banner():
         print(line)
 
     textobievenida()
-
-banner()
