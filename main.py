@@ -3,5 +3,5 @@ from settings.os_check import *
 
 
 def main():
-    banner()
+    sistema()
 main()

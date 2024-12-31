@@ -1,4 +1,5 @@
 import platform
+from Banner.welcome import *
 
 def sistema():
     try:
@@ -7,9 +8,10 @@ def sistema():
         print(f"Error al detectar el sistema operativo: {e}")
     else:
         if sistema == "Windows":
-            print("El sistema operativo es Windows")
-            
+            #print("El sistema operativo es Windows")
+            banner()
         elif sistema == "Linux":
-            print("El sistema operativo es Linux")
+            #print("El sistema operativo es Linux")
+            banner()
         else:
             print(f"Sistema operativo desconocido: {sistema}")
