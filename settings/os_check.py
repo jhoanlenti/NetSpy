@@ -8,10 +8,8 @@ def sistema():
         print(f"Error al detectar el sistema operativo: {e}")
     else:
         if sistema == "Windows":
-            #print("El sistema operativo es Windows")
-            banner()
+            print("El sistema operativo es Windows")   
         elif sistema == "Linux":
-            #print("El sistema operativo es Linux")
-            banner()
+            print("El sistema operativo es Linux")
         else:
             print(f"Sistema operativo desconocido: {sistema}")
