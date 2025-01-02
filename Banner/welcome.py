@@ -22,7 +22,7 @@ def banner():
 
     img = Image.open(img_path)
 
-    img = img.resize((100, 50))  #ajustar la calidad
+    img = img.resize((140, 20))  #ajustar la calidad
 
     img = img.convert('L')
 
