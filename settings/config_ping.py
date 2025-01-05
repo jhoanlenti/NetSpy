@@ -1,12 +1,8 @@
 import os
 import re
-
-
-decision = int(input("Decide which option do you want to run. 1. Ping all ips of the negtwork 2.Ping a specific ip: "))
-
+from .stat_ports import *
 
 def pingtodos():
-
     # Ejecutar ipconfig y obtener la salida
     ipconfig_output = os.popen('ipconfig').read()
 
@@ -34,19 +30,20 @@ def pingtodos():
     else:
         print("No se pudo encontrar la dirección IP.")
 
-
 def specificip():
-    print("Here is the list of all ips in the network: ")
-    print(os.system('arp -a'))
-    
-    ipselect = input("Enter the ip that you ant to ping: ")
-    print(os.system(f"ping -a {ipselect}"))
+    host2 = input("Introduce la IP a escanear: ")
+    #print(os.system(f"ping -a {ipselect}"))
+    comprobar_ip(host2)
 
-
-while True:
-    if decision == 1:
-        pingtodos()
-    elif decision == 2:
-        specificip()
-    else:
-        decision = input("Error input, Enter 1 or 2")
+def mode():
+    print(f"Escoge que opcion prefieres:\n")
+    print(f"1. Buscar IP's de mi red activas")
+    print(f"2. Analizar IP's si esta activa")
+    decision = int(input("--> "))
+    while True:
+        if decision == 1:
+            pingtodos()
+        elif decision == 2:
+            specificip()
+        else:
+            decision = input("Error input, Enter 1 or 2")
