@@ -1,69 +1,83 @@
-import subprocess
 import socket
+import re
+import threading
+from queue import Queue
+import time
+
+# Diccionario con los puertos comunes y sus servicios según la IANA
+PORTS = {
+    20: "FTP Data Transfer",
+    21: "FTP Control",
+    22: "SSH",
+    23: "Telnet",
+    25: "SMTP",
+    53: "DNS",
+    80: "HTTP",
+    443: "HTTPS",
+    110: "POP3",
+    143: "IMAP",
+    3306: "MySQL",
+    3389: "RDP",
+    5900: "VNC",
+    # ... puedes agregar más puertos y servicios según sea necesario
+}
+
+# Función para validar si la entrada es una dirección IP válida
+def is_valid_ip(ip):
+    pattern = r"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$"
+    return re.match(pattern, ip) is not None
 
 # Función para comprobar si un puerto está abierto
 def is_port_open(host, port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(1)
     try:
-        # Ejecutar el comando netcat para verificar si el puerto está abierto
-        result = subprocess.run(
-            ['nc', '-zv', host, str(port)], 
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE
-        )
-        # Si el comando tiene salida en stdout que indica que el puerto está abierto
-        if 'succeeded' in result.stdout.decode('utf-8'):
-            return True
-        else:
-            return False
-    except Exception as e:
-        print(f"Error al comprobar el puerto {port}: {e}")
-        return False
-
-# Función para escanear un rango de puertos
-def scan_ports(host, start_port, end_port):
-    print(f"Escaneando puertos en {host} desde {start_port} hasta {end_port}...")
-    open_ports = []
-    for port in range(start_port, end_port + 1):
-        if is_port_open(host, port):
-            print(f"Puerto {port} está abierto.")
-            open_ports.append(port)
-    return open_ports
-
-# Solicitar la IP del host
-host = input("Introduce la IP o dominio a escanear: ")
-# Definir el rango de puertos a escanear
-start_port = 1
-end_port = 1024
-
-# Escanear los puertos
-open_ports = scan_ports(host, start_port, end_port)
-
-if open_ports:
-    print(f"Puertos abiertos encontrados: {open_ports}")
-else:
-    print("No se encontraron puertos abiertos.")
-
-
-####################
-import socket
-
-# Función para comprobar si un puerto está abierto
-def is_port_open(host, port):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Crear un socket TCP
-    sock.settimeout(1)  # Establecer un tiempo de espera de 1 segundo
-    try:
-        sock.connect((host, port))  # Intentar conectar al host y puerto
-        return True
-    except (socket.timeout, socket.error):  # Si hay un error de conexión, el puerto está cerrado
-        return False
+        result = sock.connect_ex((host, port))
+        return result == 0
     finally:
-        sock.close()  # Cerrar el socket
+        sock.close()
 
-# Solicitar la IP y puerto al usuario
-host = input("Introduce la IP o dominio a escanear: ")
-port = int(input("Introduce el puerto a comprobar: "))
+# Función que será ejecutada por cada hilo
+def port_scan_worker(host, port_queue, results):
+    while not port_queue.empty():
+        port = port_queue.get()
+        if is_port_open(host, port):
+            service = PORTS.get(port, "Desconocido")
+            results.append(f"El puerto {port} está abierto en {host}. Servicio: {service}")
+        port_queue.task_done()
 
-# Verificar si el puerto está abierto
-if is_port_open(host, port):
-    print(f"El puerto {port} está abierto en {host}.")
-else:
-    print(f"El puerto {port} está cerrado en {host}.")
+# Función principal de escaneo
+def scan_ports(host, num_threads=100):
+    while not is_valid_ip(host):
+        print("La dirección ingresada no es una IP válida.")
+        host = input("Introduce la IP a escanear: ")
+
+    port_queue = Queue()
+    results = []
+
+    # Poner todos los puertos en la cola
+    for port in range(1, 65536):
+        port_queue.put(port)
+
+    # Crear y iniciar los hilos
+    threads = []
+    for _ in range(num_threads):
+        thread = threading.Thread(target=port_scan_worker, args=(host, port_queue, results))
+        thread.daemon = True
+        thread.start()
+        threads.append(thread)
+
+    # Esperar a que todos los hilos terminen
+    port_queue.join()
+
+    # Imprimir resultados
+    for result in sorted(results):
+        print(result)
+
+# Solicitar la IP al usuario y ejecutar el escaneo
+def ip(host):
+    start_time = time.time()
+    scan_ports(host)
+    end_time = time.time()
+    print(f"Escaneo completado en {end_time - start_time:.2f} segundos")
+
