@@ -16,5 +16,3 @@ def netspy_banner():
     print(banner)
     print("\nBienvenido al Programa de NetSpy. Tu confianza es nuestra prioridad!!! :D")
 
-# Llamar a la función
-netspy_banner()
