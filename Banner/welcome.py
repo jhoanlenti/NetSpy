@@ -36,7 +36,8 @@ def banner():
     # Dividir el string en líneas
     width, height = img.size
     ascii_lines = [ascii_str[i:i + width] for i in range(0, len(ascii_str), width)]
-
+    
+    #for para imprimir
     for line in ascii_lines:
         print(line)
 
