@@ -1,7 +1,7 @@
-from Banner.welcome import *
+from Banner.ban import *
 from settings.os_check import *
 
 
 def main():
-    banner()
+    netspy_banner()
 main()
