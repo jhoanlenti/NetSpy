@@ -1,4 +1,4 @@
-from Banner.ban import *
+from banner.ban import *
 from settings.os_check import *
 
 

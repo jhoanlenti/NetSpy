@@ -1,5 +1,5 @@
 import platform
-from Banner.welcome import *
+from banner.ban import *
 
 def sistema():
     try:
