@@ -1,6 +1,7 @@
 import os
 import re
 from .stat_ports import *
+from .api import *
 
 # Función para validar si la entrada es una dirección IP válida
 def is_valid_ip(ip):
@@ -57,7 +58,6 @@ def mode():
         elif decision == 2:
             specificip()
         elif decision == 3:
-            print(f"En proceso")
-            #ip_public()
+            ip_public()
         else:
             decision = input("Error input, Enter 1, 2 or 3")
