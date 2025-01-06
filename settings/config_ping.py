@@ -2,6 +2,11 @@ import os
 import re
 from .stat_ports import *
 
+# Función para validar si la entrada es una dirección IP válida
+def is_valid_ip(ip):
+    pattern = r"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$"
+    return re.match(pattern, ip) is not None
+
 def pingtodos():
     # Ejecutar ipconfig y obtener la salida
     ipconfig_output = os.popen('ipconfig').read()
@@ -32,7 +37,13 @@ def pingtodos():
 
 def specificip():
     host2 = input("Introduce la IP a escanear: ")
+    
+    while not is_valid_ip(host2):
+        print("La dirección ingresada no es una IP válida.")
+        host = input("Introduce la IP a escanear: ")
+    
     #print(os.system(f"ping -a {ipselect}"))
+    
     comprobar_ip(host2)
 
 def mode():
@@ -45,5 +56,8 @@ def mode():
             pingtodos()
         elif decision == 2:
             specificip()
+        elif decision == 3:
+            print(f"En proceso")
+            #ip_public()
         else:
-            decision = input("Error input, Enter 1 or 2")
+            decision = input("Error input, Enter 1, 2 or 3")

@@ -22,11 +22,6 @@ PORTS = {
     # ... puedes agregar más puertos y servicios según sea necesario
 }
 
-# Función para validar si la entrada es una dirección IP válida
-def is_valid_ip(ip):
-    pattern = r"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$"
-    return re.match(pattern, ip) is not None
-
 # Función para comprobar si un puerto está abierto
 def is_port_open(host, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -48,10 +43,6 @@ def port_scan_worker(host, port_queue, results):
 
 # Función principal de escaneo
 def scan_ports(host, num_threads=100):
-    while not is_valid_ip(host):
-        print("La dirección ingresada no es una IP válida.")
-        host = input("Introduce la IP a escanear: ")
-
     port_queue = Queue()
     results = []
 
@@ -80,5 +71,3 @@ def comprobar_ip(host):
     scan_ports(host)
     end_time = time.time()
     print(f"Escaneo completado en {end_time - start_time:.2f} segundos")
-
-#comprobar_ip("hola")
