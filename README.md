@@ -15,3 +15,9 @@ Navegue al directorio del proyecto:
 Instale las dependencias:
 
 	pip install -r requirements.txt
+
+Uso
+
+Para ejecutar el programa:
+
+	python3 main.py
