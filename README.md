@@ -8,7 +8,7 @@ Instalación
 	Clonar el siguiente repositorio:
 	git clone https://github.com/tu-usuario/ip-scanner.git
 
-Navegar al directorio del proyecto:
+Dirigirse al directorio del proyecto:
 
 	cd netspy
 
