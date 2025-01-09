@@ -5,14 +5,14 @@ Este proyecto es un escáner de puertos versátil desarrollado en Python. Permit
 
 Instalación
 
-	Clone este repositorio:
+	Clonar el siguiente repositorio:
 	git clone https://github.com/tu-usuario/ip-scanner.git
 
-Navegue al directorio del proyecto:
+Naveguar al directorio del proyecto:
 
 	cd netspy
 
-Instale las dependencias:
+Instalar las dependencias:
 
 	pip install -r requirements.txt
 
