@@ -17,4 +17,4 @@ def netspy_banner():
     print(banner)
     print("\nBienvenido al Programa de NetSpy. Tu confianza es nuestra prioridad!!! :D")
     print("\n Tool: Network Ports and IPs manangment")
-    print("\n\nAuthor: Sergi, Jordi, Ethan, Jhoan y Nuria")
+    print("\n\nAuthor: Sergi Pons, Jordi Gomez, Ethan Provencio, Jhoan Sebastian Lope y Nuria Salas")
