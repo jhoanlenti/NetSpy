@@ -1,45 +1,49 @@
 import os
-import re
 
-decisiones = {"yes","si","y","s"}
+def get_ips_from_arp():
+    """
+    Obtiene las direcciones IP de la tabla ARP usando `os.popen()` con el comando `arp -a`.
+    """
+    ips = []
+    # Ejecuta el comando `arp -a` y lee su salida
+    with os.popen("arp -a") as arp_output:
+        for line in arp_output:
+            # Divide las líneas en palabras
+            parts = line.split()
+            if len(parts) > 1:
+                # La primera parte suele ser la dirección IP
+                ip = parts[0]
+                if ip.count(".") == 3:  # Comprueba que es una dirección IPv4 válida
+                    ips.append(ip)
+    return ips
 
-userdecision = input("Sabes que ip quieres analizar? ")
+def ping_ip(ip):
+    """
+    Hace ping a una IP usando `os.system()` y devuelve True si responde.
+    """
+    # Ejecuta el comando ping y redirige la salida al null para ocultarla
+    response = os.system(f"ping -n 1 -w 100 {ip} >nul 2>&1")
+    return response == 0  # Si el código de salida es 0, la IP respondió
 
-if userdecision.lower() in decisiones:
-    ip = input("Ingresa la ip que deseas analizar: ")
-    os.system(f"ping -a {ip}")
-else:
-    print("Aqui tienes una lista de todas las ip que estan en la red")
-    os.system(f"arp -a")
+def main():
+    # Obtiene las IPs de la tabla ARP
+    print("Obteniendo direcciones IP de la tabla ARP...")
+    ips = get_ips_from_arp()
+    print(f"Se encontraron {len(ips)} direcciones IP en la red.")
 
+    # Lista para guardar las IPs que responden al ping
+    active_ips = []
 
+    # Realiza ping a cada IP
+    print("Realizando ping a las direcciones IP encontradas...")
+    for ip in ips:
+        if ping_ip(ip):
+            active_ips.append(ip)
 
+    # Muestra las IPs activas
+    print("\nDirecciones IP activas:")
+    for ip in active_ips:
+        print(ip)
 
-# # Ejecutar ipconfig y obtener la salida
-# ipconfig_output = os.popen('ipconfig').read()
-
-# # Buscar la dirección IP
-# ip_pattern = r'IPv4 Address[.\s]+:\s+(\d+\.\d+\.\d+\.\d+)'
-# ip_match = re.search(ip_pattern, ipconfig_output)
-
-# equipos = []
-
-# if ip_match:
-#     ip_address = ip_match.group(1)
-#     # Obtener los primeros 3 octetos de la dirección IP
-#     network_prefix = '.'.join(ip_address.split('.')[:3])
-    
-#     # Ejecutar arp -a y obtener la salida
-#     arp_output = os.popen('arp -a').read()
-    
-#     # Buscar todas las IPs en la misma red
-#     ip_list = re.findall(rf'{network_prefix}\.\d+', arp_output)
-    
-#     print(f"IPs encontradas en la red {network_prefix}.0:")
-#     for ip in ip_list:
-#         nombre = os.system(f"ping -a {ip}")
-#         equipos.append(nombre)
-# else:
-#     print("No se pudo encontrar la dirección IP.")
-
-# print(equipos)
+if __name__ == "__main__":
+    main()
