@@ -1,11 +1,11 @@
 import os
 import re
 
+decisiones = {"yes","si","y","s"}
 
+userdecision = input("Sabes que ip quieres analizar? ")
 
-userdecision = input("Sabes que ip quieres analizar?")
-
-if userdecision.lower() == "si":
+if userdecision.lower() in decisiones:
     ip = input("Ingresa la ip que deseas analizar: ")
     os.system(f"ping -a {ip}")
 else:
