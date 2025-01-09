@@ -10,7 +10,7 @@ Instalación
 
 Dirigirse al directorio del proyecto:
 
-	cd netspy
+	cd (tu_ruta_directorio)/netspy
 
 Instalar las dependencias:
 
