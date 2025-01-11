@@ -2,6 +2,7 @@ import os
 import re
 from .stat_ports import *  # Asumimos que esto contiene funciones adicionales necesarias
 from .os_check import sistema
+from .api import ip_public
 
 # Función para validar si la entrada es una dirección IP válida
 def is_valid_ip(ip):
@@ -46,8 +47,7 @@ def mode():
     print(f"1. Buscar IP's de mi red activas")
     print(f"2. Analizar IP si está activa")
     print(f"3. IP pública")
-    print(f"4. Analizar IP's si están activas")
-    
+        
     while True:
         try:
             decision = int(input("--> "))
@@ -60,11 +60,7 @@ def mode():
                 specificip()  # Esta opción pide una IP y comprueba si está activa
                 quit()
             elif decision == 3:
-                print(f"En proceso")
-                quit()
-                # Aquí podrías implementar o llamar una función que analice la IP pública
-                # Ejemplo: ip_public()
-            elif decision == 4:
+                ip_public()
                 quit()
             else:
                 print("Opción inválida, por favor elige una opción entre 1, 2, 3 o 4.")
