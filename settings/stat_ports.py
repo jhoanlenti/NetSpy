@@ -65,7 +65,7 @@ def scan_ports(host, num_threads=100):
     for result in sorted(results):
         print(result)
 
-# Solicitar la IP al usuario y ejecutar el escaneo
+# Cronometro de tiempo y resultado
 def comprobar_ip(host):
     start_time = time.time()
     scan_ports(host)
