@@ -13,7 +13,7 @@ def wifi_hack_titulo():
         ╚███╔███╔╝██║██║     ██║     ██║  ██║██║  ██║╚██████╗██║  ██╗
          ╚══╝╚══╝ ╚═╝╚═╝     ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
                         Security Tool | WIFI HACK           
-                        Author: Jordi, Sergi, Ethan, Johan y Nuria                   
+                        Author: Sergi Pons, Jordi Gomez, Ethan Provencio, Jhoan Sebastian Lope y Nuria Salas                  
     """
     print(banner)
 
