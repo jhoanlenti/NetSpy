@@ -2,30 +2,12 @@ import time
 import itertools
 import string
 
-
-# Iniciar funcion titulo
-def wifi_hack_titulo():
-    banner = f"""
-        ██╗    ██╗██╗███████╗██╗     ██╗  ██╗ █████╗  ██████╗██╗  ██╗
-        ██║    ██║██║██╔════╝██║     ██║  ██║██╔══██╗██╔════╝██║ ██╔╝
-        ██║ █╗ ██║██║█████╗  ██║     ███████║███████║██║     █████╔╝ 
-        ██║███╗██║██║██╔══╝  ██║     ██╔══██║██╔══██║██║     ██╔═██╗ 
-        ╚███╔███╔╝██║██║     ██║     ██║  ██║██║  ██║╚██████╗██║  ██╗
-         ╚══╝╚══╝ ╚═╝╚═╝     ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
-                        Security Tool | WIFI HACK           
-                        Author: Sergi Pons, Jordi Gomez, Ethan Provencio, Jhoan Sebastian Lope y Nuria Salas                  
-    """
-    print(banner)
-
-# Llamar funcion titulo
-wifi_hack_titulo()
-
-
 # Es un simulador de hackeo de fuerza bruta a una password wifi
 # - Recomiendo para ver su funcionamiento rapidamente introducir una password de 3 caracteres
 # - La variable password tendra la contraseña que se intentara hackear
 # - La variable max_longitud sera la variable del tamaño maximo de la password
 def hack_password(password, max_longitud=8):
+    
     caracteres = string.ascii_letters + string.digits + string.punctuation
     intentos = 0
     inicio = time.time()
@@ -42,6 +24,4 @@ def hack_password(password, max_longitud=8):
 
     print("\n[ERROR] No esta la contraseña en el rango prestablecido")
 
-# Entrada al simulador
-averiguar_contraseña = input("Introduce una contraseña ramdom para iniciar el simulador de Hackeo (maximo 8 caracteres): ")
-hack_password(averiguar_contraseña)
+
