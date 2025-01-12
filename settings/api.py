@@ -1,10 +1,3 @@
-#import requests
-
-#def ip_public(ip):
-#    url = "https://api.ipify.org"
-    #pu = curl url
-#    publica = requests.get(url)
-#    return publica.text
 import requests
 import time
 
@@ -24,5 +17,3 @@ def ip_public(intentos=1):
         except requests.exceptions.RequestException as e:
             print(f"Intento {intentos_realizados}: Error de conexión: {e}")
         time.sleep(1)
-
-ip_public(1)

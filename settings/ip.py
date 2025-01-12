@@ -1,4 +1,5 @@
 import os
+from .os_check import sistema
 
 def get_ips_from_arp():
     """
@@ -25,7 +26,7 @@ def ping_ip(ip):
     response = os.system(f"ping -n 1 -w 100 {ip} >nul 2>&1")
     return response == 0  # Si el código de salida es 0, la IP respondió
 
-def main():
+def lista_ips_win():
     # Obtiene las IPs de la tabla ARP
     print("Obteniendo direcciones IP de la tabla ARP...")
     ips = get_ips_from_arp()
@@ -45,5 +46,10 @@ def main():
     for ip in active_ips:
         print(ip)
 
-if __name__ == "__main__":
-    main()
+def ip_scan():
+    if sistema == "windows":
+        lista_ips_win()
+    elif sistema == "linux":
+        print("en proceso")
+    else:
+        return False

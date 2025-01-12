@@ -1,9 +1,9 @@
 from banner.ban import *
-from settings.config_ping import *
-
+from settings.options import *
 
 def main():
     netspy_banner()
     mode()
 
-main()
+if __name__ == "__main__":
+    main()
