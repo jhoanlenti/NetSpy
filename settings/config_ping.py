@@ -3,6 +3,7 @@ import re
 from .stat_ports import *  # Asumimos que esto contiene funciones adicionales necesarias
 from .os_check import sistema
 from .api import ip_public
+from .wifi_hack_password import wifi_hack_titulo, hack_password
 
 # Función para validar si la entrada es una dirección IP válida
 def is_valid_ip(ip):
@@ -47,6 +48,7 @@ def mode():
     print(f"1. Buscar IP's de mi red activas")
     print(f"2. Analizar IP si está activa")
     print(f"3. IP pública")
+    print(f"4. Simulador Hackeo password Wifi")
         
     while True:
         try:
@@ -61,6 +63,10 @@ def mode():
                 quit()
             elif decision == 3:
                 ip_public()
+                quit()
+            elif decision == 4:
+                wifi_hack_titulo()
+                hack_password()
                 quit()
             else:
                 print("Opción inválida, por favor elige una opción entre 1, 2, 3 o 4.")
