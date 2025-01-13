@@ -24,7 +24,7 @@ def ping_ip(ip):
     response = os.system(f"ping -c 1 -w 100 {ip} > /dev/null 2>&1")
     return response == 0  # Si el código de salida es 0, la IP respondió
 
-def main():
+def lista_ips_lin():
     # Obtiene las IPs de la tabla ARP
     print("Obteniendo direcciones IP de la tabla ARP...")
     ips = get_ips_from_arp()
@@ -43,6 +43,3 @@ def main():
     print("\nDirecciones IP activas:")
     for ip in active_ips:
         print(ip)
-
-if __name__ == "__main__":
-    main()

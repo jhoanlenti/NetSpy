@@ -1,6 +1,6 @@
 from .api import ip_public
 from .config_ping import specificip
-from .ip import ip_scan
+from .ips_scans import ip_scan
 from .wifi_hack_password import hack_password
 from banner.ban import *
 
@@ -19,11 +19,10 @@ def mode():
             case 1:
                 banner_1()
                 ip_scan()
-                # Aquí podrías llamar a la función `pingtodos()`, por ejemplo, para buscar IPs activas en la red.
                 return True
             case 2:
                 banner_2()
-                specificip()  # Esta opción pide una IP y comprueba si está activa
+                specificip()  
                 return True
             case 3:
                 banner_3()
