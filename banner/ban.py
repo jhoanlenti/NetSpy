@@ -30,10 +30,10 @@ def banner_1():
         ██║     ██║██║ ╚████║██████╔╝     ██║██║     
         ╚═╝     ╚═╝╚═╝  ╚═══╝╚═════╝      ╚═╝╚═╝     
     """
-    if sistema == "windows":
+    if sistema() == "windows":
         os.system('cls')
         return print(titulo1)
-    elif sistema == "linux":
+    elif sistema() == "linux":
         os.system('clear')
         return print(titulo1)
     else:
@@ -48,10 +48,10 @@ def banner_2():
         ██║██║        ██║  ██║██║ ╚████║██║  ██║███████╗  ██║    ███████║███████╗██║ ██║   
         ╚═╝╚═╝        ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝  ╚═╝    ╚══════╝╚══════╝╚═╝ ╚═╝    
     """
-    if sistema == "windows":
+    if sistema() == "windows":
         os.system("cls")
         return print(titulo2)
-    elif sistema == "linux":
+    elif sistema() == "linux":
         os.system("clear")
         return print(titulo2)
     else:
@@ -66,10 +66,10 @@ def banner_3():
         ██║     ╚██████╔╝██████╔╝ ███████╗██║╚██████╗     ██║██║     
         ╚═╝      ╚═════╝ ╚═════╝  ╚══════╝╚═╝ ╚═════╝     ╚═╝╚═╝   
     """
-    if sistema == "windows":
+    if sistema() == "windows":
         os.system("cls")
         return print(titulo3)
-    elif sistema == "linux":
+    elif sistema() == "linux":
         os.system("clear")
         return print(titulo3)
     else:
@@ -84,10 +84,10 @@ def banner_4():
         ╚███╔███╔╝██║██║     ██║     ██║  ██║██║  ██║╚██████╗██║  ██╗
             ╚══╝╚══╝ ╚═╝╚═╝     ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
     """
-    if sistema == "windows":
+    if sistema() == "windows":
         os.system("cls")
         return print(titulo4)
-    elif sistema == "linux":
+    elif sistema() == "linux":
         os.system("clear")
         return print(titulo4)
     else:

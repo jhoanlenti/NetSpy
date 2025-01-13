@@ -1,4 +1,5 @@
 import platform
+import os
 
 def sistema():
     try:
