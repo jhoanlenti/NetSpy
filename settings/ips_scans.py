@@ -6,7 +6,6 @@ def ip_scan():
     if sistema() == "windows":
         lista_ips_win()
     elif sistema() == "linux":
-        print("en proceso")
         lista_ips_lin()
     else:
         return False

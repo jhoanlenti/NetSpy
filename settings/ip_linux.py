@@ -20,9 +20,8 @@ def ping_ip(ip):
     """
     Hace ping a una IP usando `os.system()` y devuelve True si responde.
     """
-    # Ejecuta el comando `ping` y redirige la salida a /dev/null para ocultarla
     response = os.system(f"ping -c 1 -w 100 {ip} > /dev/null 2>&1")
-    return response == 0  # Si el código de salida es 0, la IP respondió
+    return response == 0  
 
 def lista_ips_lin():
     # Obtiene las IPs de la tabla ARP
