@@ -2,6 +2,7 @@ from .api import ip_public
 from .config_ping import specificip
 from .ip import ip_scan
 from .wifi_hack_password import hack_password
+from banner.ban import *
 
 def mode():
     print(f"\nEscoge que opción prefieres:\n")
@@ -16,53 +17,20 @@ def mode():
         decision = int(input("--> "))
         match decision:    
             case 1:
-                titulo1 = """
-                    ███████╗██╗███╗   ██╗██████╗      ██╗██████╗ 
-                    ██╔════╝██║████╗  ██║██╔══██╗     ██║██╔══██╗
-                    █████╗  ██║██╔██╗ ██║██║  ██║     ██║██████╔╝
-                    ██╔══╝  ██║██║╚██╗██║██║  ██║     ██║██╔═══╝ 
-                    ██║     ██║██║ ╚████║██████╔╝     ██║██║     
-                    ╚═╝     ╚═╝╚═╝  ╚═══╝╚═════╝      ╚═╝╚═╝     
-                """
-                print(titulo1)
-                print("En proceso")
+                banner_1()
                 ip_scan()
                 # Aquí podrías llamar a la función `pingtodos()`, por ejemplo, para buscar IPs activas en la red.
                 return True
             case 2:
-                titulo2 = """
-                    ██╗██████╗     █████╗ ███╗   ██╗ █████╗ ██╗   ██╗     ██╗███████╗███████╗██████╗ 
-                    ██║██╔══██╗   ██╔══██╗████╗  ██║██╔══██╗██║    ██╗   ██║ ██╔════╝██╔════╝██╔══██╗
-                    ██║██████╔╝   ███████║██╔██╗ ██║███████║██║     ██║ ██║  ███████╗█████╗  ██████╔╝
-                    ██║██╔═══╝    ██╔══██║██║╚██╗██║██╔══██║██║       ██║    ╚════██║██╔══╝  ██╔██═╝ 
-                    ██║██║        ██║  ██║██║ ╚████║██║  ██║███████╗  ██║    ███████║███████╗██║ ██║   
-                    ╚═╝╚═╝        ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝  ╚═╝    ╚══════╝╚══════╝╚═╝ ╚═╝    
-                """
-                print(titulo2)
+                banner_2()
                 specificip()  # Esta opción pide una IP y comprueba si está activa
                 return True
             case 3:
-                titulo3 = """
-                    ██████╗ ██╗   ██╗██████╗  ██╗     ██╗ ██████╗     ██╗██████╗ 
-                    ██╔══██╗██║   ██║██╔══██╗ ██║     ██║██╔════╝     ██║██╔══██╗
-                    ██████╔╝██║   ██║██████╔╝ ██║     ██║██║          ██║██████╔╝
-                    ██╔═══╝ ██║   ██║██╔══██║ ██║     ██║██║          ██║██╔═══╝ 
-                    ██║     ╚██████╔╝██████╔╝ ███████╗██║╚██████╗     ██║██║     
-                    ╚═╝      ╚═════╝ ╚═════╝  ╚══════╝╚═╝ ╚═════╝     ╚═╝╚═╝   
-                """
-                print(titulo3)
+                banner_3()
                 ip_public(1)
                 return True
             case 4:
-                titulo4 = f"""
-                    ██╗    ██╗██╗███████╗██╗     ██╗  ██╗ █████╗  ██████╗██╗  ██╗
-                    ██║    ██║██║██╔════╝██║     ██║  ██║██╔══██╗██╔════╝██║ ██╔╝
-                    ██║ █╗ ██║██║█████╗  ██║     ███████║███████║██║     █████╔╝ 
-                    ██║███╗██║██║██╔══╝  ██║     ██╔══██║██╔══██║██║     ██╔═██╗ 
-                    ╚███╔███╔╝██║██║     ██║     ██║  ██║██║  ██║╚██████╗██║  ██╗
-                     ╚══╝╚══╝ ╚═╝╚═╝     ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
-                """
-                print(titulo4)
+                banner_4()
                 averiguar_contraseña = input("Introduce una contraseña ramdom para iniciar el simulador de Hackeo (maximo 8 caracteres): ")
                 hack_password(averiguar_contraseña)
                 return True
